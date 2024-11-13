@@ -35,7 +35,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
           <div className="col-span-2">
             <LogoWithText text="text-xl" icon="h-6 w-6" asLink />
-            <p className="text-muted-foreground mb-8 text-sm max-w-sm">
+
+            <p className="text-muted-foreground mt-4 mb-8 text-sm max-w-sm">
               RestroHQ is the ultimate all-in-one SaaS solution for restaurants.
               Manage POS, orders, reservations, menus, customer data, and
               analytics with ease. Start streamlining your operations today!
@@ -43,9 +44,9 @@ export function Footer() {
             <div className="flex gap-4">
               {[
                 { icon: <Icon icon="logos:facebook" />, href: "#" },
-                { icon: <Icon icon="skill-icons:twitter" />, href: "#" },
+                { icon: <Icon icon="logos:twitter" />, href: "#" },
                 { icon: <Icon icon="skill-icons:instagram" />, href: "#" },
-                { icon: <Icon icon="skill-icons:linkedin" />, href: "#" },
+                { icon: <Icon icon="devicon:linkedin" />, href: "#" },
               ].map((social, index) => (
                 <a
                   key={index}

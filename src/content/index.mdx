@@ -1,0 +1,57 @@
+---
+title: User Authentication
+description: Learn how to implement user authentication in your API
+---
+
+# User Authentication
+
+This guide explains how to implement user authentication in your application.
+
+## Overview
+
+Our API uses JWT (JSON Web Tokens) for authentication. Here's a quick example:
+
+```javascript
+const response = await fetch("/api/auth/login", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    email: "user@example.com",
+    password: "password123",
+  }),
+});
+
+const { token } = await response.json();
+```
+
+<Callout type="warning">
+  Never store JWT tokens in localStorage. Use HTTP-only cookies instead.
+</Callout>
+
+## Implementation Steps
+
+1. Set up the authentication endpoints
+2. Implement token generation
+3. Add middleware for protected routes
+
+<Steps>
+  <Step title="Create Login Endpoint">
+    First, create the login endpoint that generates JWT tokens.
+  </Step>
+  <Step title="Add Middleware">
+    Implement middleware to validate tokens on protected routes.
+  </Step>
+  <Step title="Secure Storage">
+    Store tokens securely using HTTP-only cookies.
+  </Step>
+</Steps>
+
+## API Reference
+
+| Endpoint            | Method | Description           |
+| ------------------- | ------ | --------------------- |
+| `/api/auth/login`   | POST   | Generate JWT token    |
+| `/api/auth/logout`  | POST   | Invalidate token      |
+| `/api/auth/refresh` | POST   | Refresh expired token |

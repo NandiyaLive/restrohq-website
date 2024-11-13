@@ -1,0 +1,66 @@
+# Authentication
+
+This guide explains how to implement authentication in your application using JSON Web Tokens (JWT).
+
+## Overview
+
+Our API uses JWT (JSON Web Tokens) for authentication. When a user successfully logs in, they receive a token that must be included in subsequent requests.
+
+## Obtaining a Token
+
+To get an authentication token, make a POST request to the `/api/auth/login` endpoint:
+
+```javascript
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "your-password"
+}
+```
+
+A successful response will look like this:
+
+```javascript
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "123",
+    "email": "user@example.com"
+  }
+}
+```
+
+## Using the Token
+
+Include the token in the Authorization header of your requests:
+
+```javascript
+GET /api/protected-route
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+## Token Expiration
+
+Tokens expire after 24 hours. When a token expires, you'll need to:
+
+1. Request a new token using the refresh token endpoint
+2. Update your stored token
+3. Retry the failed request
+
+## Error Responses
+
+Authentication errors will return appropriate HTTP status codes:
+
+- `401 Unauthorized`: Invalid or expired token
+- `403 Forbidden`: Valid token but insufficient permissions
+- `400 Bad Request`: Malformed token or request
+
+## Security Best Practices
+
+- Store tokens securely using HTTP-only cookies
+- Implement token refresh mechanisms
+- Use HTTPS for all API requests
+- Implement rate limiting on authentication endpoints
+- Never store tokens in localStorage

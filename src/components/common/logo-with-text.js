@@ -7,7 +7,7 @@ const LogoWithText = ({ icon, text, asLink, className }) => {
   return (
     <Comp
       className={cn(
-        "flex gap-4 items-center mb-4",
+        "flex gap-4 items-center",
         className,
         asLink && "cursor-pointer",
       )}
